@@ -74,6 +74,10 @@
     - Recall : 실제 True인 것 중에 모델이 실제로 맞춘 비율을 말한다. Recall = True Positive / (True Positive + False Negative)
     - 수집한 Target 데이터의 분포 비대칭성 존재하였으며, Positive의 Label이 상대적으로 많았기에 양성인 경우에 높게 측정되는 Accuracy로 평가하는 것은 부적합하다고 판단하였다.
 
+
+### Inference
+<img width="903" alt="스크린샷 2023-08-20 오후 3 39 10" src="https://github.com/Yu-Miri/Cafe_Review_Rating_Prediction/assets/121469490/bbb6a598-de6f-43dd-bb19-780af363bba8">
+
 ### 개선사항
 
 - 치우쳐진 데이터의 분포도 : 리뷰 데이터 특성상 1점 - 3점 평점의 비중이 적어 평점 데이터 수집에 한계 존재
@@ -104,7 +108,7 @@
       reviews = pd.read_csv('reviews.csv', index_col=0, encoding='utf-8-sig')
       reviews, bow_train = df_process(reviews)
  
- 
+
 ### Modeling[[LGBM, Logistic]]
     
       from modeling import model_dataset, modeling_LGBM, modeling_Logistic
