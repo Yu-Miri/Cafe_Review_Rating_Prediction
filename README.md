@@ -55,7 +55,7 @@
 
 - Model : **LightGBM, Logistic Regression**
     
-    <img width="1209" alt="스크린샷 2023-08-20 오후 1 57 18" src="https://github.com/Yu-Miri/Cafe_Review_Rating_Prediction/assets/121469490/cb9b9494-fa8f-4384-b4cf-a3f8fcef488b">
+<img width="1103" alt="스크린샷 2023-08-20 오후 3 36 29" src="https://github.com/Yu-Miri/Cafe_Review_Rating_Prediction/assets/121469490/43f8fccc-09e7-4342-87b3-fd4311a9663b">
 
     
     LightGBM [다중분류]
