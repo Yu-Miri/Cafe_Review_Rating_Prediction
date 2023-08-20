@@ -12,9 +12,9 @@
 ---
 ### 문제 정의
 - 대부분의 소비자들은 가고 싶은 카페를 선정할 때 평점과 리뷰를 참고하지만, 각 플랫폼 별 평점이 다르고, 광고성 리뷰 또는 악의성 리뷰로 인하여 어떤 플랫폼의 어떤 리뷰가 믿을만한 리뷰인지에 대한 혼란을 겪게 된다.
+<img width="779" alt="스크린샷 2023-08-20 오후 1 56 11" src="https://github.com/Yu-Miri/Cafe_Review_Rating_Prediction/assets/121469490/13c5981f-3dd5-42f9-bf67-f21222bc8c2a">
 
-     <img width="600" alt="스크린샷 2023-06-04 오후 3 45 33" src="https://github.com/Yu-Miri/Mini_Project/assets/121469490/09e7531f-e3ce-443e-97c8-0c838601c9e3">
-     <img width="600" alt="스크린샷 2023-06-04 오후 3 46 06" src="https://github.com/Yu-Miri/Mini_Project/assets/121469490/dcef931b-46fb-4d25-984d-8789a0baed39">
+
 
 
 ### 해결 방안
@@ -26,7 +26,8 @@
 ---
 
 ### 데이터 설명
-  <img width="311" alt="스크린샷 2023-06-04 오후 3 51 43" src="https://github.com/Yu-Miri/Mini_Project/assets/121469490/a70dd95b-3eb5-4eee-a8fe-fbd17851948f">
+
+<img width="329" alt="스크린샷 2023-08-20 오후 1 56 24" src="https://github.com/Yu-Miri/Cafe_Review_Rating_Prediction/assets/121469490/ce533c21-5a04-439b-8053-7d9350f0dc51">
 
 - 출처 : Kakao Map, Dining Code
 - Data Size : Kakao Map(14,000) + Dining Code(11,000) = 25,000개
@@ -42,9 +43,8 @@
 - 노이즈, 불용어 제거 : 평점에 영향을 미치지 않는 단어 기준으로 불용어 선정
 - Vectorization
     - TF-IDF : 단어 출현 빈도와 문서 빈도 수를 통한 희귀성을 고려한 단어의 중요성 수치화 기법
-        
-        ![스크린샷 2023-05-29 오전 11.17.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/71af51d7-23ac-44a5-a7e2-1951ebcd2cd8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-29_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.17.16.png)
-        
+        <img width="197" alt="스크린샷 2023-08-20 오후 1 56 39" src="https://github.com/Yu-Miri/Cafe_Review_Rating_Prediction/assets/121469490/b782a805-c79a-4fd8-b620-29a707e73365">
+
     - 크롤링한 리뷰를 살펴 보았을 때 직접적으로 메뉴와 가격, 직원의 친절도에 대해 언급하면서 평가를 남긴 것을 확인할 수 있었으며, 이러한 평가로 카페에 대한 평점이 정해지기 때문에 카페에 대한 평가 표현의 빈도수에 따라 토큰의 개수가 적어져도 카페 평점 예측에 큰 영향이 없을 것이라 생각되어 전처리 이후에 Underfit 상태에서 데이터의 복잡도를 낮추기 위해 토큰의 개수를 줄였습니다.
     - 토큰의 개수를 줄이고 모델의 hyper parameter tuning을 진행했을 때 Underfit이 해소되지 않은 것으로 보면, 모델이나 토큰 개수의 문제보다는 task의 난이도로 인한 모델 성능이 좋지 않다고 생각되어 다중 분류에서 이진 분류로 task의 난이도를 낮추어 개선하였습니다.
 
@@ -53,12 +53,8 @@
 
 - Model : **LightGBM, Logistic Regression**
     
-    
-    ![스크린샷 2023-05-29 오후 2.12.21.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a83f610c-53d5-4a8f-85fc-3d72cfb83b7c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-29_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.12.21.png)
-    
-    ![스크린샷 2023-05-29 오후 2.59.06.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b07def8a-7a08-4e25-9f3d-a8dfb36dc745/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-29_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.59.06.png)
-    
-    ![스크린샷 2023-05-29 오후 2.59.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/486c3848-a9c8-4066-9767-c1b1188731a8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-29_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_2.59.40.png)
+    <img width="1209" alt="스크린샷 2023-08-20 오후 1 57 18" src="https://github.com/Yu-Miri/Cafe_Review_Rating_Prediction/assets/121469490/cb9b9494-fa8f-4384-b4cf-a3f8fcef488b">
+
     
     LightGBM [다중분류]
     
